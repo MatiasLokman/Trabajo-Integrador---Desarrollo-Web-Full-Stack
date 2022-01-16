@@ -23,7 +23,7 @@ const signUp = async (req, res) => {
     }
 
     return res.json({
-      status: http.StatusCodes.OK,
+      status: http.StatusCodes.BAD_REQUEST,
       data: "Existing username, enter another",
     });
   } catch (error) {
@@ -54,13 +54,13 @@ const login = async (req, res) => {
     const result = await user.comparePassword(password, user);
 
     if (result) {
-      const token = _createToken(user.iduser, user.username);
+      const token = _createToken(user.id_user, user.username);
       console.log("token: ", token);
       res.set("Authorization", "Bearer " + token);
-      return res.json({ status: http.StatusCodes.OK, data: "Authenticated" });
+      return res.json({ status: http.StatusCodes.OK, Authorication: "Authenticated " + token });
     }
   }
-  return res.json({ status: http.StatusCodes.OK, data: "Unautheticated" });
+  return res.json({ status: http.StatusCodes.UNAUTHORIZED, data: "Unautheticated", msg: "Bad credentials"});
 };
 
 module.exports = {
