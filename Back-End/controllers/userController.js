@@ -15,7 +15,8 @@ const getUserAll = async (req, res) => {
 // -----------------------------------------------------------------------------------------------------------------------//
 
 const createUser = async (req, res) => {
-  const data = ({ firstname, lastname, username, id_country } = req.body);
+  const data = ({ firstname, lastname, username, password, id_country } =
+    req.body);
 
   const user = User.build(data);
   console.log("user: ", user);
