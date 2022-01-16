@@ -7,7 +7,6 @@ const {
 const userController = require("../controllers/userController");
 
 userRouter.get("/api/users", userController.getUserAll);
-userRouter.post("/api/users", userController.createUser);
 userRouter.get(
   "/api/users/<username>/messages/inbox",
   userController.receivedMessagesById

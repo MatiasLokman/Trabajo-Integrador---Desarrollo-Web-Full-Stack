@@ -11,7 +11,7 @@ Message.belongsTo(User, { foreignKey: "id_user" });
 Country.hasMany(City, { foreignKey: "id_country" });
 City.belongsTo(Country, { foreignKey: "id_country" });
 
-Country.hasMany(User, { foreignKey: "id_country" });
-User.belongsTo(Country, { foreignKey: "id_country" });
+City.hasMany(User, { foreignKey: "id_city" });
+User.belongsTo(City, { foreignKey: "id_city" });
 
 sequelize.sync({ alter: true });

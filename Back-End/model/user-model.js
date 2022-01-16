@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../database/integradorConnection");
 const Message = require("./message-model");
-const Country = require("./country-model");
+const City = require("./city-model");
 const bcrypt = require("bcrypt");
 
 class User extends Model {}
@@ -31,7 +31,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    id_country: {
+    id_city: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -59,7 +59,7 @@ User.prototype.comparePassword = async (passaword, user) => {
 User.hasMany(Message, { foreignKey: "id_user" });
 Message.belongsTo(User, { foreignKey: "id_user" });
 
-Country.hasMany(User, { foreignKey: "id_country" });
-User.belongsTo(Country, { foreignKey: "id_country" });
+City.hasMany(User, { foreignKey: "id_city" });
+User.belongsTo(City, { foreignKey: "id_city" });
 
 module.exports = User;
