@@ -1,0 +1,25 @@
+.login-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  margin: 250px 0;
+}
+
+.login-inputs {
+  flex-direction: column;
+  gap: 10px;
+  width: 240px;
+}
+
+.login-buttons {
+  flex-direction: row;
+  .login-btn {
+    margin: 0 5px;
+  }
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
