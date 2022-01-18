@@ -1,3 +1,41 @@
-<p>login works!!!</p>
-<h1>Hola, como estas?</h1>
-<h1>Hello, how are you?</h1>
+<div class="container flex">
+  <div class="login-container position-absolute top-50 start-50 translate-middle">
+    <div class="login-inputs">
+      <div class="mb-3">
+        <label class="mb-1">Nombre de usuario</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Usuario"
+          aria-label="Username"
+          aria-describedby="addon-wrapping"
+        />
+      </div>
+      <div class="mb-2">
+        <label class="mb-1">Contraseña</label>
+        <input
+        type="text"
+        class="form-control"
+        placeholder="Contraseña"
+        aria-label="password"
+        aria-describedby="addon-wrapping"
+        />
+      </div>
+    </div>
+    
+    <span >
+      ¿No tienes una cuenta? 
+      <a routerLink="/signup" class="link-signup">Regístrate</a>
+    </span>
+    <button 
+      type="button"
+      mat-raised-button 
+      color="primary"
+      class="mt-3"
+      routerLink="/inbox"
+      (click)="login()">
+      Iniciar sesión
+    </button>
+    
+  </div> 
+</div>
