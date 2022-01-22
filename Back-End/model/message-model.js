@@ -15,11 +15,11 @@ Message.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    addressee: {
-      type: DataTypes.STRING,
+    id_user: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
-    id_user: {
+    id_receiver: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

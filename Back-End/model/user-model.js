@@ -59,6 +59,9 @@ User.prototype.comparePassword = async (passaword, user) => {
 User.hasMany(Message, { foreignKey: "id_user" });
 Message.belongsTo(User, { foreignKey: "id_user" });
 
+User.hasMany(Message, { foreignKey: "id_user" });
+Message.belongsTo(User, { foreignKey: "id_receiver" });
+
 City.hasMany(User, { foreignKey: "id_city" });
 User.belongsTo(City, { foreignKey: "id_city" });
 

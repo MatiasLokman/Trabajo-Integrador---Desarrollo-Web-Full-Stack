@@ -8,6 +8,9 @@ const City = require("./city-model");
 User.hasMany(Message, { foreignKey: "id_user" });
 Message.belongsTo(User, { foreignKey: "id_user" });
 
+User.hasMany(Message, { foreignKey: "id_user" });
+Message.belongsTo(User, { foreignKey: "id_receiver" });
+
 Country.hasMany(City, { foreignKey: "id_country" });
 City.belongsTo(Country, { foreignKey: "id_country" });
 
