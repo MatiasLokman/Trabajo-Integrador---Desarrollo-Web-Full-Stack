@@ -11,16 +11,18 @@ export class SignupComponent implements OnInit {
   public countries = ["Argentina", "Brazil", "Chile"]
   public cities = ["Cordoba", "Bs As", "Tucuman"]
   public newUser: FormGroup;
+  public validPass: boolean = false;
+  public flagMsgPass: boolean = false;
 
   constructor(private formBuilder: FormBuilder) {
     this.newUser = this.formBuilder.group({
-      first_name: ['', Validators.required],
-      second_name: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      repeat_password: ['', Validators.required],
-      country: ['', Validators.required],
-      city: ['', Validators.required],
+      first_name: [''],
+      second_name: [''],
+      username: [''],
+      password: [''],
+      repeat_password: [''],
+      country: [''],
+      city: [''],
     })
   }
 
@@ -29,38 +31,55 @@ export class SignupComponent implements OnInit {
 
   clearNewUser(): void {
     this.newUser = this.formBuilder.group({
-      first_name: ['', Validators.required],
-      second_name: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      repeat_password: ['', Validators.required],
-      country: ['', Validators.required],
-      city: ['', Validators.required],
+      first_name: [''],
+      second_name: [''],
+      username: [''],
+      password: [''],
+      repeat_password: [''],
+      country: [''],
+      city: [''],
     });
+    this.flagMsgPass = false;
   }
 
   ValidatorNewUser(userData: User): void {
+    console.log(this.validPass);
+    if(this.newUser.value.password === this.newUser.value.repeat_password){
+      this.validPass = true
+    } else{
+      this.flagMsgPass = true;
+    }
     this.newUser = this.formBuilder.group({
-      first_name: [userData.first_name, Validators.required],
-      second_name: [userData.second_name, Validators.required],
-      username: [userData.username, Validators.required],
-      password: [userData.password, Validators.required],
-      repeat_password: [userData.repeat_password, Validators.required],
-      country: [userData.country, Validators.required],
-      city: [userData.city, Validators.required],
+      first_name: [this.newUser.value.first_name, Validators.required],
+      second_name: [this.newUser.value.second_name, Validators.required],
+      username: [this.newUser.value.username, Validators.required],
+      password: [this.newUser.value.password, Validators.required],
+      repeat_password: [this.newUser.value.repeat_password, Validators.required],
+      country: [this.newUser.value.country, Validators.required],
+      city: [this.newUser.value.city, Validators.required],
     });
   }
 
+  // ValidatorNewUser(userData: User): void {
+  //   this.newUser = this.formBuilder.group({
+  //     first_name: [userData.first_name, Validators.required],
+  //     second_name: [userData.second_name, Validators.required],
+  //     username: [userData.username, Validators.required],
+  //     password: [userData.password, Validators.required],
+  //     repeat_password: [userData.repeat_password, Validators.required],
+  //     country: [userData.country, Validators.required],
+  //     city: [userData.city, Validators.required],
+  //   });
+  // }
+
   signup(event: Event){
     event.preventDefault();
+    
+    this.ValidatorNewUser(this.newUser.value)
 
-    const form = this.newUser;
-    const user = form.value;
-
-    if(form.valid){
-      console.log(user);
-      this.clearNewUser();
+    if(this.newUser.valid && this.validPass){
+        console.log(this.newUser.value);
+        this.clearNewUser()
     }
   }
-
 }
