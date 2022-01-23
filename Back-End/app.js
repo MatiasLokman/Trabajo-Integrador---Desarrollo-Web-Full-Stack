@@ -6,7 +6,6 @@ const path = require("path");
 
 const userRouter = require("./routes/user-routes");
 const authRouter = require("./routes/auth-routes");
-const messageRouter = require("./routes/message-routes");
 
 const errorAppMiddleware = require("./middleware/errorAppMiddleware");
 const { notFoundMiddleware } = require("./middleware/notFoundMiddleware");
@@ -31,7 +30,6 @@ app.use(appTimestampMiddleware);
 
 app.use(authRouter);
 app.use(authMiddleware.authRoutesMiddleware, userRouter);
-app.use(messageRouter);
 
 app.all("*", notFoundMiddleware);
 
