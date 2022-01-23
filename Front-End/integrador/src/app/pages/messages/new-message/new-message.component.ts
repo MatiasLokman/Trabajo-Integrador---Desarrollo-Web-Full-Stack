@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-message.component.scss']
 })
 export class NewMessageComponent implements OnInit {
-
+  public users = [
+    "Santi",
+    "Mati",
+    "Pato"
+  ]
   constructor() { }
 
   ngOnInit(): void {
