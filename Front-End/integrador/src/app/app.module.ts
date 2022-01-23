@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { SharedModule } from './shared/shared.module';
 import { MessagesModule } from './pages/messages/messages.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, SignupComponent],
@@ -18,7 +19,8 @@ import { MessagesModule } from './pages/messages/messages.module';
     BrowserAnimationsModule,
     MaterialModule,
     SharedModule,
-    MessagesModule
+    MessagesModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
