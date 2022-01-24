@@ -39,6 +39,7 @@ export class SignupComponent implements OnInit {
       country: [''],
       city: [''],
     });
+    this.validPass = false;
     this.flagMsgPass = false;
   }
 
@@ -74,7 +75,7 @@ export class SignupComponent implements OnInit {
 
   signup(event: Event){
     event.preventDefault();
-    
+
     this.ValidatorNewUser(this.newUser.value)
 
     if(this.newUser.valid && this.validPass){
