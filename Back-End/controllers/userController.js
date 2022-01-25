@@ -15,38 +15,55 @@ const getUserAll = async (req, res) => {
 // -----------------------------------------------------------------------------------------------------------------------//
 
 const receivedMessagesById = async (req, res) => {
-    const { id } = req.params;
-  
-    const result = await Message.findOne({
+  const { username: id } = req.params;
+  //VALIDAR ID url = ID LOGIN
+  try {
+    const result = await Message.findAll({
       where: {
-        id: id,
+        id_receiver: id,
       },
       include: User,
     });
     res.json({ result });
+  } catch (error) {
+    console.log(error);
+    res.json({ error });
+  }
 };
 
 // -----------------------------------------------------------------------------------------------------------------------//
 
 const sentMessagesById = async (req, res) => {
-    const { id } = req.params;
-  
-    const result = await Message.findOne({
+  const { username: id } = req.params;
+  //VALIDAR ID url = ID LOGIN
+  try {
+    const result = await Message.findAll({
       where: {
-        id: id,
+        id_user: id,
       },
-      include: User,
+      // include: User,
     });
     res.json({ result });
+  } catch (error) {
+    console.log(error);
+    res.json({ error });
+  }
 };
 
 // -----------------------------------------------------------------------------------------------------------------------//
 
 const SendMessageToId = async (req, res) => {
-    const data = ({ message, id_user, id_receiver } = req.body);
-  
-    const message = await Message.create(data);
-    res.json({ status: http.StatusCodes.OK, data: message });
+  console.log(req.body);
+  const data = ({ message, id_receiver } = req.body);
+  const { username } = req.params;
+  //VALIDAR USERNAME PARA OBTENER ID
+  //VALIDAR ID url = ID LOGIN
+  //VALIDAR ID_RECIEVER QUE EXISTA
+  const newMessage = await Message.create({
+    ...data,
+    id_user: parseInt(username),
+  });
+  res.json({ status: http.StatusCodes.OK, data: newMessage });
 };
 
 // -----------------------------------------------------------------------------------------------------------------------//

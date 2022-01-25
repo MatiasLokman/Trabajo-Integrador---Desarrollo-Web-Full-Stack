@@ -3,7 +3,7 @@ const http = require("http-status-codes");
 const jwt = require("jsonwebtoken");
 
 const signUp = async (req, res) => {
-  const data = ({ firstname, lastname, username, password } = req.body);
+  const data = ({ firstname, lastname, username, password, id_city } = req.body);
 
   try {
     const exists_user = await User.findAndCountAll({
