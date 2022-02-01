@@ -57,7 +57,7 @@ const login = async (req, res) => {
       const token = _createToken(user.id_user, user.username);
       console.log("token: ", token);
       res.set("Authorization", "Bearer " + token);
-      return res.json({ status: http.StatusCodes.OK, Authorication: "Authenticated " + token });
+      return res.json({ status: http.StatusCodes.OK, Authorization: "Authenticated " + token });
     }
   }
   return res.json({ status: http.StatusCodes.UNAUTHORIZED, data: "Unautheticated", msg: "Bad credentials"});
