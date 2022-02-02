@@ -43,7 +43,7 @@ export class SignupComponent implements OnInit {
     this.flagMsgPass = false;
   }
 
-  ValidatorNewUser(userData: User): void {
+  ValidatorNewUser(): void {
     console.log(this.validPass);
     if(this.newUser.value.password === this.newUser.value.repeat_password){
       this.validPass = true
@@ -76,7 +76,7 @@ export class SignupComponent implements OnInit {
   signup(event: Event){
     event.preventDefault();
 
-    this.ValidatorNewUser(this.newUser.value)
+    this.ValidatorNewUser();
 
     if(this.newUser.valid && this.validPass){
         console.log(this.newUser.value);
