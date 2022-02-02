@@ -31,8 +31,12 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    id_city: {
-      type: DataTypes.INTEGER,
+    country: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    city: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
@@ -61,8 +65,5 @@ Message.belongsTo(User, { foreignKey: "id_user" });
 
 User.hasMany(Message, { foreignKey: "id_user" });
 Message.belongsTo(User, { foreignKey: "id_receiver" });
-
-City.hasMany(User, { foreignKey: "id_city" });
-User.belongsTo(City, { foreignKey: "id_city" });
 
 module.exports = User;
