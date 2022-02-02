@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../database/integradorConnection");
 const Message = require("./message-model");
-const City = require("./city-model");
 const bcrypt = require("bcrypt");
 
 class User extends Model {}
