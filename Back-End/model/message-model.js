@@ -12,7 +12,7 @@ Message.init(
       autoIncrement: true,
     },
     message: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(144),
       allowNull: false,
     },
     id_user: {
