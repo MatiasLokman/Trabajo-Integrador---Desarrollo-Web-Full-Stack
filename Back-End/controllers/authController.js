@@ -37,7 +37,7 @@ const signUp = async (req, res) => {
 
 const _createToken = (id, username) => {
   return jwt.sign({ id, username }, process.env.JWT_SECRET, {
-    expiresIn: "1m",
+    expiresIn: "15m",
   });
 };
 
