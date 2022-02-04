@@ -13,7 +13,7 @@
             <th scope="col" class="row-ths text-center "> Acciones</th>
           </tr>
         </thead>
-        <tbody >
+        <tbody>
           <!-- para los mensajes no leídos se colora un ngClass que le agrega una estilo de bootstrap al elemento,
             de manera condicional, si la propiedad de leído del mensaje es true, se le agregara dicha propiedad de table-active
             [ngClass]="{'table-active': message.read}" -->
@@ -22,12 +22,12 @@
             <td class="text-center user-row">{{message.user}}</td>
             <td class=" msg-row">{{message.message}}</td>
             <td class="text-center date-row">{{message.date}}</td>
-            <td class="text-center action-row ps-4"> 
-              <button mat-mini-fab color="secondary" class="ml-3" matTooltip="Marcar como leído">
-                <mat-icon>drafts</mat-icon>
+            <td class="text-center action-row ps-4">
+              <button mat-mini-fab color="secondary" class="ml-3 mt-1 btn" matTooltip="Marcar como leído">
+                <mat-icon class="icon">drafts</mat-icon>
               </button>
-              <button mat-mini-fab color="warn" class="mx-3" matTooltip="Borrar">
-                <mat-icon>delete</mat-icon>
+              <button mat-mini-fab color="warn" class="mx-3 mt-1 btn" matTooltip="Borrar">
+                <mat-icon class="icon">delete</mat-icon>
               </button>
             </td>
           </tr>
