@@ -4,12 +4,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 let materialModules = [
   MatToolbarModule, 
   MatIconModule, 
   MatButtonModule,
   MatSidenavModule,
+  MatTooltipModule,
 ];
 
 @NgModule({

@@ -1,0 +1,19 @@
+.th-color{
+  background-color: rgb(133, 143, 186);
+}
+
+.msg-row{
+  width: 60%;
+}
+
+.nro-row, .user-row, .date-row, .msg-row{
+  padding: 1rem ;
+}
+.row-ths{
+  height: 50px;
+  padding: 1rem;
+}
+
+tr:hover{
+  background-color: rgba(187, 187, 187, 0.564);
+}

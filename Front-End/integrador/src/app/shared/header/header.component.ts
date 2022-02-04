@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   
-  statusMenu: boolean = false;
+  // statusMenu: boolean = false;
   iconMenu: string = "menu";
   username: string = "Santi Moreno"
 
@@ -16,9 +16,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openMenu(status: boolean){
-    this.statusMenu = status;
-    this.iconMenu = this.statusMenu ? "arrow_back" : "menu";
-  }
+  // openMenu(status: boolean){
+  //   this.statusMenu = status;
+  //   this.iconMenu = this.statusMenu ? "arrow_back" : "menu";
+  // }
 
 }
