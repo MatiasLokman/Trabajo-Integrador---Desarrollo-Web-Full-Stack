@@ -54,7 +54,7 @@ const sentMessagesById = async (req, res) => {
 
 const SendMessageToId = async (req, res) => {
   console.log(req.body);
-  const data = ({ message, id_receiver } = req.body);
+  const data = ({ message, id_receiver, isRead } = req.body);
   const { username } = req.params;
   //VALIDAR USERNAME PARA OBTENER ID
   //VALIDAR ID url = ID LOGIN
@@ -62,6 +62,7 @@ const SendMessageToId = async (req, res) => {
   const newMessage = await Message.create({
     ...data,
     id_user: parseInt(username),
+    isRead: 0
   });
   res.json({ status: http.StatusCodes.OK, data: newMessage });
 };
