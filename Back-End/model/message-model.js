@@ -23,6 +23,10 @@ Message.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    isRead: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
   },
   {
     tableName: "messages",
