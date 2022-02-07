@@ -3,7 +3,9 @@ const express = require("express");
 const app = express();
 const port = process.env.APP_PORT;
 const path = require("path");
+const cors = require("cors");
 
+app.use(cors())
 const userRouter = require("./routes/user-routes");
 const authRouter = require("./routes/auth-routes");
 const messageRouter = require("./routes/message-routes");
