@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from 'src/app/services/service.service';
+import { LoginService } from 'src/app/services/login.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,18 +8,24 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  username: string = "";
+  password: string = "";
+  public jsonData: any = {};
 
-  constructor(private __service: ServiceService) { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.__service.getUsers().subscribe((res)=>{
-      console.log(res);
-    });
-
+    
   }
 
   login(){
-    //window.location.href = "/signup"
+    let user = this.username
+    let pass = this.password
+    this.jsonData = [user, pass]
+    this.loginService.postLogin(this.jsonData).subscribe((res)=>{
+      console.log(res);
+    });
+    // window.location.href = "/signup"
   }
 
 }
