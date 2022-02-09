@@ -75,8 +75,11 @@ export class SignupComponent implements OnInit {
     this.ValidatorNewUser()
 
     if(this.newUser.valid && this.validPass){
-        this.signupService.postSignup(this.newUser.value).subscribe((res)=>{
+        this.signupService.postSignup(this.newUser.value).subscribe((res: any)=>{
           console.log("🚀 ~ file: login.component.ts ~ line 26 ~ LoginComponent ~ this.loginService.postLogin ~ res", res)
+          if(res.status == 200){
+            window.location.href = "/login"
+          }
         });;
         console.log(this.newUser.value);
         this.clearNewUser()

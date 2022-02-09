@@ -22,10 +22,12 @@ export class LoginComponent implements OnInit {
     let username = this.username
     let password = this.password
     this.jsonData = {username, password}
-    this.loginService.postLogin(this.jsonData).subscribe((res)=>{
+    this.loginService.postLogin(this.jsonData).subscribe((res :any)=>{
       console.log("🚀 ~ file: login.component.ts ~ line 26 ~ LoginComponent ~ this.loginService.postLogin ~ res", res)
+      if(res.status == 200){
+        window.location.href = "/new-message"
+      }  
     });
-    // window.location.href = "/signup"
   }
 
 }
