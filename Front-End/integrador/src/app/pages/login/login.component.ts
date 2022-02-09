@@ -19,11 +19,11 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    let user = this.username
-    let pass = this.password
-    this.jsonData = [user, pass]
+    let username = this.username
+    let password = this.password
+    this.jsonData = {username, password}
     this.loginService.postLogin(this.jsonData).subscribe((res)=>{
-      console.log(res);
+      console.log("🚀 ~ file: login.component.ts ~ line 26 ~ LoginComponent ~ this.loginService.postLogin ~ res", res)
     });
     // window.location.href = "/signup"
   }

@@ -6,14 +6,14 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LoginService {
-  private urlBase = "http://localhost:3000/"
+  private urlBase = "http://localhost:3000"
 
 
   constructor(private http: HttpClient, private router: Router) { }
 
 
   postLogin(body: any ){
-    console.log(this.http.get(this.urlBase + "api/login", body));
-    return this.http.get(this.urlBase + "api/login");
+    return this.http.post(this.urlBase + "/api/login", body);
   }
+  
 }

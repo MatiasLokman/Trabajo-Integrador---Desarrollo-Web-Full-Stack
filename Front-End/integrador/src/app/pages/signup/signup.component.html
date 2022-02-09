@@ -10,9 +10,9 @@
               type="text"
               class="form-control"
               placeholder="Nombre"
-              formControlName= "first_name"
+              formControlName= "firstname"
             />
-            <div class="text-danger" *ngIf="newUser.get('first_name')?.hasError('required')">
+            <div class="text-danger" *ngIf="newUser.get('firstname')?.hasError('required')">
               Ingresar nombre!
             </div>
           </div>
@@ -22,9 +22,9 @@
             type="text"
             class="form-control"
             placeholder="Apellido"
-            formControlName= "second_name"
+            formControlName= "lastname"
             />
-            <div class="text-danger" *ngIf="newUser.get('second_name')?.hasError('required')">
+            <div class="text-danger" *ngIf="newUser.get('lastname')?.hasError('required')">
               Ingresar apellido!
             </div>
           </div>
@@ -77,12 +77,13 @@
 
         <div class="mb-3">
           <label for="country" class="form-label">País</label>
-          <select class="form-select" name="country" formControlName= "country">
+          <select class="form-select" name="country" formControlName= "country" 
+          (click)="getCities()">
             <option [selected] value="">Seleccione...</option>
             <option 
             *ngFor="let country of countries" 
-            [value]="country" 
-            >{{country}}</option>
+            [value]="country.country" 
+            >{{country.country}}</option>
           </select>
           <div class="text-danger" *ngIf="newUser.get('country')?.hasError('required')">
             Seleccione un país!
