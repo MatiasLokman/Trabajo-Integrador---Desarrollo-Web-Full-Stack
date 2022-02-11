@@ -71,9 +71,7 @@ export class SignupComponent implements OnInit {
 
   signup(event: Event){
     event.preventDefault();
-
     this.ValidatorNewUser()
-
     if(this.newUser.valid && this.validPass){
         this.signupService.postSignup(this.newUser.value).subscribe((res: any)=>{
           console.log("🚀 ~ file: login.component.ts ~ line 26 ~ LoginComponent ~ this.loginService.postLogin ~ res", res)
