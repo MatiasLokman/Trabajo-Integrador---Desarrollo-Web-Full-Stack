@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
-    
   }
 
   login(){
@@ -25,7 +24,8 @@ export class LoginComponent implements OnInit {
     this.loginService.postLogin(this.jsonData).subscribe((res :any)=>{
       console.log("🚀 ~ file: login.component.ts ~ line 26 ~ LoginComponent ~ this.loginService.postLogin ~ res", res)
       if(res.status == 200){
-        window.location.href = "/new-message"
+        localStorage.setItem("token", res.Authorization.split(" ")[1]);
+        window.location.href = "/inbox"
       }  
     });
   }

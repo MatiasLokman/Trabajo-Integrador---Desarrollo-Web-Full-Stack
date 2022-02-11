@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'new-message', component: NewMessageComponent },
   
   { path: 'inbox', component: InboxComponent },
-
+  
   { path: 'sent', component: SentComponent },
 
   {

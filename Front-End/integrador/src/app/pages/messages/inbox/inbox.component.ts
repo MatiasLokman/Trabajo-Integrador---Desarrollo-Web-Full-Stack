@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessagesService } from '../../../services/messages.service';
 
 @Component({
   selector: 'app-inbox',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inbox.component.scss']
 })
 export class InboxComponent implements OnInit {
+  private id_user: number = 0;
   public messages = [
     {
       message: "Hola, como estas? Hay pushee el fix" ,
@@ -23,13 +25,18 @@ export class InboxComponent implements OnInit {
       date: "01/02/2022" ,
     },
   ];
-  constructor() { 
+  constructor(private messagesService: MessagesService){ 
+    this.getMessage()
   }
 
   ngOnInit(): void {
     console.log(this.messages)
   }
 
-  
+  getMessage(){
+    // this.messagesService.getMessages(this.id_user:any).suscribe((res)=> {
+
+    // })
+  }
 
 }
