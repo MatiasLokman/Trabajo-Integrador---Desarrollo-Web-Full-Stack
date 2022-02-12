@@ -22,8 +22,19 @@ const receivedMessagesById = async (req, res) => {
       where: {
         id_receiver: id,
       },
-      include: User,
+      include: {
+        model: User,
+        association: "sender"
+      },
     });
+
+    // const resultUser = await User.findAll({
+    //   where: {
+    //     id_user: result[0].dataValues.id_user,
+    //   }
+    // });
+    // const user = resultUser[0];
+
     res.json({ result });
   } catch (error) {
     console.log(error);
@@ -41,7 +52,7 @@ const sentMessagesById = async (req, res) => {
       where: {
         id_user: id,
       },
-      // include: User,
+      include: User,
     });
     res.json({ result });
   } catch (error) {
