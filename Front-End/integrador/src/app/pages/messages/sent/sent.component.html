@@ -13,14 +13,17 @@
           </tr>
         </thead>
         <tbody>
+          <tr *ngIf="messages.length == 0;">
+            <td class="text-center nro-row" colspan="4"> ¡Bandeja de salida vaciá! </td>
+          </tr>
           <!-- para los mensajes no leídos se colora un ngClass que le agrega una estilo de bootstrap al elemento,
             de manera condicional, si la propiedad de leído del mensaje es true, se le agregara dicha propiedad de table-active
             [ngClass]="{'table-active': message.read}" -->
           <tr *ngFor="let message of messages; let i = index">
             <th class="text-center nro-row" scope="row">{{i+1}}</th>
-            <td class="text-center user-row">{{message.user}}</td>
+            <td class="text-center user-row">{{message.receiver.username}}</td>
             <td class=" msg-row">{{message.message}}</td>
-            <td class="text-center date-row">{{message.date}}</td>
+            <td class="text-center date-row">{{ formatDate(message.createdAt)}}</td>
           </tr>
         </tbody>
       </table>

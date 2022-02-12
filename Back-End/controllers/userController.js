@@ -28,13 +28,6 @@ const receivedMessagesById = async (req, res) => {
       },
     });
 
-    // const resultUser = await User.findAll({
-    //   where: {
-    //     id_user: result[0].dataValues.id_user,
-    //   }
-    // });
-    // const user = resultUser[0];
-
     res.json({ result });
   } catch (error) {
     console.log(error);
@@ -52,7 +45,10 @@ const sentMessagesById = async (req, res) => {
       where: {
         id_user: id,
       },
-      include: User,
+      include: {
+        model: User,
+        association: "receiver"
+      },
     });
     res.json({ result });
   } catch (error) {
@@ -67,9 +63,6 @@ const SendMessageToId = async (req, res) => {
   console.log(req.body);
   const data = ({ message, id_receiver, isRead } = req.body);
   const { username } = req.params;
-  //VALIDAR USERNAME PARA OBTENER ID
-  //VALIDAR ID url = ID LOGIN
-  //VALIDAR ID_RECIEVER QUE EXISTA
   const newMessage = await Message.create({
     ...data,
     id_user: parseInt(username),
