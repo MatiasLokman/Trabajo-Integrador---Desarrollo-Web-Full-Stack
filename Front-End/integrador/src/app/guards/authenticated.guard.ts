@@ -17,7 +17,7 @@ export class AuthenticatedGuard implements CanActivate {
   ): boolean {
     let token = localStorage.getItem('token');
     if (!token) {
-      window.location.href = '/login';
+      history.go(-1);
       return false;
     }
     return true;
