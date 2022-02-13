@@ -4,6 +4,8 @@ import { NewMessageComponent } from './new-message/new-message.component';
 import { InboxComponent } from './inbox/inbox.component';
 import { SentComponent } from './sent/sent.component';
 import { MaterialModule } from '../../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -14,7 +16,8 @@ import { MaterialModule } from '../../material/material.module';
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class MessagesModule { }

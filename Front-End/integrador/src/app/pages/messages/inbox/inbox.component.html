@@ -14,19 +14,24 @@
           </tr>
         </thead>
         <tbody>
-          <!-- para los mensajes no leídos se colora un ngClass que le agrega una estilo de bootstrap al elemento,
-            de manera condicional, si la propiedad de leído del mensaje es true, se le agregara dicha propiedad de table-active
-            [ngClass]="{'table-active': message.read}" -->
-          <tr *ngFor="let message of messages; let i = index">
+          <tr *ngIf="messages.length == 0;">
+            <td class="text-center nro-row" colspan="5"> ¡Bandeja de entrada vaciá! </td>
+          </tr>
+          <tr *ngFor="let message of messages; let i = index" >
             <th class="text-center nro-row" scope="row">{{i+1}}</th>
-            <td class="text-center user-row">{{message.user}}</td>
+            <td class="text-center user-row">{{message.sender.username}}</td>
             <td class=" msg-row">{{message.message}}</td>
-            <td class="text-center date-row">{{message.date}}</td>
+            <td class="text-center date-row">{{ formatDate(message.createdAt)}}</td>
             <td class="text-center action-row ps-4">
-              <button mat-mini-fab color="secondary" class="ml-3 mt-1 btn" matTooltip="Marcar como leído">
+              <button mat-mini-fab 
+                color="secondary" 
+                class="ml-3 mt-1 btn" 
+                [matTooltip]="message.tooltip"
+                (click)="readMsg(message)"
+                [ngClass]="{'msg-read': message.isRead}">
                 <mat-icon class="icon">drafts</mat-icon>
               </button>
-              <button mat-mini-fab color="warn" class="mx-3 mt-1 btn" matTooltip="Borrar">
+              <button mat-mini-fab color="warn" class="mx-3 mt-1 btn" matTooltip="Borrar" (click)="deleteMsg(message.id_message)">
                 <mat-icon class="icon">delete</mat-icon>
               </button>
             </td>
