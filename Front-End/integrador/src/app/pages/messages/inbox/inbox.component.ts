@@ -31,8 +31,14 @@ export class InboxComponent implements OnInit {
 
   getMessage(){
     this.messagesService.getMessages(this.id_user).subscribe((res: any)=> {
-      console.log(res)
       this.messages = res.result
+      for (let i = 0; i < this.messages.length; i++) {
+        if(this.messages[i].isRead){
+          this.messages[i].tooltip = "Marcar como leído"
+        } else{  
+          this.messages[i].tooltip = "Marcar como no leído"
+        }
+      }
     })
   }
   
@@ -45,4 +51,17 @@ export class InboxComponent implements OnInit {
     ${reformDate.getHours()}:${reformDate.getMinutes()}`;
   }
 
+  deleteMsg(id_message: number){
+    this.messagesService.deleteMessage(id_message).subscribe((res: any)=> {
+      window.location.reload()
+    })
+  }
+
+  readMsg(message: any){
+    message.isRead = !message.isRead
+    this.messagesService.putMessage(message).subscribe((res: any)=> {
+      // console.log(res)
+      this.getMessage()
+    })
+  }
 }

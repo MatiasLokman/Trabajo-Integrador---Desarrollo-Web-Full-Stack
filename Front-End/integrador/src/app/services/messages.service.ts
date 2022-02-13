@@ -35,12 +35,18 @@ export class MessagesService {
     return this.http.get(this.urlBase + "/api/users/" + id_user + "/messages/sent", {headers : this.headers});
   }
 
-  postMessages( body: any){
+  postMessages(body: any){
     this.createHeader()
     return this.http.post(this.urlBase + "/api/users/" + body.id_user + "/messages", body, {headers : this.headers});
   }
 
-  deleteMessage(){
+  deleteMessage(id_message: number){
+    this.createHeader()
+    return this.http.delete(this.urlBase + "/api/messages/" + id_message , {headers : this.headers});
+  }
 
+  putMessage(body: any){
+    this.createHeader()
+    return this.http.put(this.urlBase + "/api/messages/read/" + body.id_message , body, {headers : this.headers});
   }
 }

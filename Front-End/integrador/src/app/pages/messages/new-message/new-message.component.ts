@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class NewMessageComponent implements OnInit {
   public users: any = [];
-  private id_user: number = 0;
+  private userID: number = 0;
   public newMsg: FormGroup;
 
   constructor(private messagesService: MessagesService, private formBuilder: FormBuilder) {
@@ -32,7 +32,7 @@ export class NewMessageComponent implements OnInit {
       var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
           return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
       }).join(''));
-      this.id_user = JSON.parse(jsonPayload).id;
+      this.userID = JSON.parse(jsonPayload).id;
     }
   };
 
@@ -45,11 +45,29 @@ export class NewMessageComponent implements OnInit {
 
   sendMsg(event: Event){
     event.preventDefault();
-    this.newMsg.value.id_user = this.id_user;
-    
-    console.log(this.newMsg.value)
-    this.messagesService.postMessages(this.newMsg.value).subscribe((res: any) => {
-      console.log(res.result)
-    });
+    this.newMsg.value.id_user = this.userID;
+    this.validateForm()
+    if(this.newMsg.valid){
+      this.messagesService.postMessages(this.newMsg.value).subscribe((res: any) => {
+        console.log(res)
+        this.clearMsg()
+      });
+    }
+  }
+
+  validateForm(){
+    this.newMsg = this.formBuilder.group({
+      message: [this.newMsg.value.message, [Validators.required, Validators.maxLength(144)]],
+      id_receiver: [this.newMsg.value.id_receiver, Validators.required],
+      id_user:[this.newMsg.value.id_user, Validators.required],
+    })
+  }
+
+  clearMsg(){
+    this.newMsg = this.formBuilder.group({
+      message: [''],
+      id_receiver: [''],
+      id_user:[''],
+    })
   }
 }
