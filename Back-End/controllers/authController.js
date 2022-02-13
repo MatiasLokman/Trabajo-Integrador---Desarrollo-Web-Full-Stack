@@ -3,8 +3,9 @@ const http = require("http-status-codes");
 const jwt = require("jsonwebtoken");
 
 const signUp = async (req, res) => {
-  const data = ({ firstname, lastname, username, password, id_city } = req.body);
-
+  const data = ({ firstname, lastname, username, password, city, country } = req.body);
+  console.log("🚀 ~ file: authController.js ~ line 7 ~ signUp ~ data", req.body)
+  
   try {
     const exists_user = await User.findAndCountAll({
       where: {
@@ -49,7 +50,7 @@ const login = async (req, res) => {
       username,
     },
   });
-
+  console.log(user)
   if (user) {
     const result = await user.comparePassword(password, user);
 

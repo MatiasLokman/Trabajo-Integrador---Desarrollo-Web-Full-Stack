@@ -3,7 +3,8 @@
   <mat-toolbar class="header-mat" color="primary"> 
     <div>
       <!-- AGREGAR: ngIF para mostrar cuando solo este logueado-->
-      <button mat-icon-button class="d-flex ps-2" (click)="drawer.toggle()">
+      <button mat-icon-button class="d-flex ps-2" (click)="drawer.toggle()"
+      *ngIf="viewMenu">
         <mat-icon>menu</mat-icon>
       </button> 
     </div>
@@ -13,7 +14,7 @@
     </div>
     <div>
       <!-- AGREGAR: ngIF para mostrar cuando solo este logueado-->
-      <span class="fs-6">{{ username }}</span>
+      <span class="fs-6 me-5">{{ username }}</span>
     </div>
   </mat-toolbar>
 </mat-drawer-container>
@@ -54,6 +55,6 @@
     </section>
   </div>
   <div class="d-flex justify-content-center">
-    <a mat-stroked-button color="warn" (click)="drawer.toggle()" routerLink="login">Cerrar sesión</a>
+    <a mat-stroked-button color="warn" (click)="drawer.toggle(); clearLocalStorage()" routerLink="login">Cerrar sesión</a>
   </div>
 </mat-drawer>
