@@ -12,15 +12,19 @@ Message.init(
       autoIncrement: true,
     },
     message: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    addressee: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(144),
       allowNull: false,
     },
     id_user: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    id_receiver: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    isRead: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
   },

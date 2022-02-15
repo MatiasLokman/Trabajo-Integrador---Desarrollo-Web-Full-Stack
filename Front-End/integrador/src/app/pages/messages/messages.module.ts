@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NewMessageComponent } from './new-message/new-message.component';
 import { InboxComponent } from './inbox/inbox.component';
 import { SentComponent } from './sent/sent.component';
+import { MaterialModule } from '../../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -10,10 +12,12 @@ import { SentComponent } from './sent/sent.component';
   declarations: [
     NewMessageComponent,
     InboxComponent,
-    SentComponent
+    SentComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class MessagesModule { }

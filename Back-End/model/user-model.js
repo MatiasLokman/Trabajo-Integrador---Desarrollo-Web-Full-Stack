@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../database/integradorConnection");
 const Message = require("./message-model");
-const Country = require("./country-model");
 const bcrypt = require("bcrypt");
 
 class User extends Model {}
@@ -31,8 +30,12 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    id_country: {
-      type: DataTypes.INTEGER,
+    country: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    city: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
@@ -56,10 +59,10 @@ User.prototype.comparePassword = async (passaword, user) => {
   return await bcrypt.compare(passaword, user.password);
 };
 
-User.hasMany(Message, { foreignKey: "id_user" });
-Message.belongsTo(User, { foreignKey: "id_user" });
+User.hasMany(Message, { as: "sender", foreignKey: "id_user" });
+Message.belongsTo(User, { as: "sender", foreignKey: "id_user" });
 
-Country.hasMany(User, { foreignKey: "id_country" });
-User.belongsTo(Country, { foreignKey: "id_country" });
+User.hasMany(Message, {  as: "receiver", foreignKey: "id_user" });
+Message.belongsTo(User, { as: "receiver", foreignKey: "id_receiver" });
 
 module.exports = User;

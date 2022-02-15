@@ -2,16 +2,12 @@ require("dotenv").config();
 const sequelize = require("../database/integradorConnection");
 const User = require("./user-model");
 const Message = require("./message-model");
-const Country = require("./country-model");
-const City = require("./city-model");
 
-User.hasMany(Message, { foreignKey: "id_user" });
-Message.belongsTo(User, { foreignKey: "id_user" });
 
-Country.hasMany(City, { foreignKey: "id_country" });
-City.belongsTo(Country, { foreignKey: "id_country" });
+User.hasMany(Message, { as: "sender", foreignKey: "id_user" });
+Message.belongsTo(User, { as: "sender", foreignKey: "id_user" });
 
-Country.hasMany(User, { foreignKey: "id_country" });
-User.belongsTo(Country, { foreignKey: "id_country" });
+User.hasMany(Message, {  as: "receiver", foreignKey: "id_user" });
+Message.belongsTo(User, { as: "receiver", foreignKey: "id_receiver" });
 
 sequelize.sync({ alter: true });

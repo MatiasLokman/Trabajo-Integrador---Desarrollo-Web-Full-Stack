@@ -1,6 +1,6 @@
 const User = require("../model/user-model");
-// const Post = require("../model/post-model-seq");
 const http = require("http-status-codes");
+const Message = require("../model/message-model");
 // const sequelize = require("../database/integradorConnection");
 // const { QueryTypes } = require("sequelize");
 
@@ -14,42 +14,66 @@ const getUserAll = async (req, res) => {
 
 // -----------------------------------------------------------------------------------------------------------------------//
 
-const createUser = async (req, res) => {
-  const data = ({ firstname, lastname, username, password, id_country } =
-    req.body);
-
-  const user = User.build(data);
-  console.log("user: ", user);
+const receivedMessagesById = async (req, res) => {
+  const { username: id } = req.params;
+  //VALIDAR ID url = ID LOGIN
   try {
-    const result = await user.save();
-    res.json({ status: http.StatusCodes.OK, data: result });
+    const result = await Message.findAll({
+      where: {
+        id_receiver: id,
+      },
+      include: {
+        model: User,
+        association: "sender"
+      },
+    });
+
+    res.json({ result });
   } catch (error) {
-    res.json({ status: http.StatusCodes.INTERNAL_SERVER_ERROR, data: "ERROR" });
+    console.log(error);
+    res.json({ error });
   }
 };
 
 // -----------------------------------------------------------------------------------------------------------------------//
 
-const receivedMessagesById = async (req, res) => {
-  //  ...
-};
-
-// -----------------------------------------------------------------------------------------------------------------------//
-
 const sentMessagesById = async (req, res) => {
-  //  ...
+  const { username: id } = req.params;
+  //VALIDAR ID url = ID LOGIN
+  try {
+    const result = await Message.findAll({
+      where: {
+        id_user: id,
+      },
+      include: {
+        model: User,
+        association: "receiver"
+      },
+    });
+    res.json({ result });
+  } catch (error) {
+    console.log(error);
+    res.json({ error });
+  }
 };
 
 // -----------------------------------------------------------------------------------------------------------------------//
 
 const SendMessageToId = async (req, res) => {
-  //  ...
+  console.log(req.body);
+  const data = ({ message, id_receiver, isRead } = req.body);
+  const { username } = req.params;
+  const newMessage = await Message.create({
+    ...data,
+    id_user: parseInt(username),
+    isRead: 0
+  });
+  res.json({ status: http.StatusCodes.OK, data: newMessage });
 };
 
 // -----------------------------------------------------------------------------------------------------------------------//
 
 module.exports = {
-  createUser,
   getUserAll,
   receivedMessagesById,
   sentMessagesById,
